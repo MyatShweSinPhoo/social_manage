@@ -1,0 +1,95 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================ FACEBOOK ============================
+
+enum FbPostStatus {
+  DRAFT
+  SCHEDULED
+  PUBLISHING
+  POSTED
+  FAILED
+}
+
+model FbPost {
+  id             Int          @id @default(autoincrement())
+  caption        String       @db.Text
+  imageName      String?      @db.VarChar(255)
+  scheduledAt    DateTime?
+  status         FbPostStatus @default(DRAFT)
+  facebookPostId String?      @db.VarChar(100)
+  errorMessage   String?      @db.Text
+  postedAt       DateTime?
+  attempts       Int          @default(0)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@index([status, scheduledAt])
+  @@map("fb_posts")
+}
+
+// ============================= TIKTOK =============================
+
+enum TtMediaType {
+  VIDEO
+  IMAGE
+}
+
+enum TtPostStatus {
+  PENDING_APPROVAL
+  SCHEDULED
+  PUBLISHING
+  PUBLISHED
+  FAILED
+  REJECTED
+}
+
+model TtAccount {
+  id           Int       @id @default(autoincrement())
+  name         String
+  openId       String    @unique @db.VarChar(191)
+  accessToken  String    @db.Text
+  refreshToken String?   @db.Text
+  expiresAt    DateTime?
+  createdAt    DateTime  @default(now())
+  posts        TtPost[]
+
+  @@map("tt_accounts")
+}
+
+model TtPost {
+  id             Int          @id @default(autoincrement())
+  accountId      Int
+  account        TtAccount    @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  caption        String       @db.Text
+  mediaFile      String
+  mediaType      TtMediaType
+  status         TtPostStatus @default(PENDING_APPROVAL)
+  scheduledAt    DateTime?
+  attempts       Int          @default(0)
+  externalId     String?
+  error          String?      @db.Text
+  publishedAt    DateTime?
+  telegramChatId String?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@index([status, scheduledAt])
+  @@map("tt_posts")
+}
+
+model TtIdea {
+  id        Int      @id @default(autoincrement())
+  topic     String
+  title     String
+  hook      String   @db.Text
+  createdAt DateTime @default(now())
+
+  @@map("tt_ideas")
+}

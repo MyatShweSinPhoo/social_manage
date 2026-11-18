@@ -1,0 +1,50 @@
+/* TikTok panel styles. Everything is scoped under .tt so it never touches the Facebook (Tailwind) pages. */
+.tt { --pink: #fe2c55; --cyan: #25f4ee; --bg: #000; --card: #161823; --line: #2a2d3a; --muted: #9a9cab;
+  background: var(--bg); color: #fff; min-height: 100dvh; font: 15px/1.45 "Segoe UI", system-ui, -apple-system, "Noto Sans Myanmar", "Padauk", sans-serif; }
+.tt * { box-sizing: border-box; }
+.tt-app { max-width: 560px; min-height: 100dvh; margin: 0 auto; display: flex; flex-direction: column; }
+.tt-scroll { flex: 1; padding-bottom: 12px; }
+.tt-top { padding: 18px 16px 8px; display: flex; flex-direction: column; gap: 12px; }
+.tt-top .row1 { display: flex; justify-content: space-between; align-items: center; }
+.tt-top h1 { margin: 0; font-size: 24px; font-weight: 800; }
+.tt-logo { width: 34px; height: 34px; border-radius: 10px; background: #000; border: 1px solid var(--line); display: inline-flex; align-items: center; justify-content: center; font-size: 18px; margin-right: 10px; text-shadow: 2px 0 var(--pink), -2px 0 var(--cyan); }
+.tt-body { padding: 6px 14px 14px; display: flex; flex-direction: column; gap: 12px; }
+.tt-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px; }
+.tt-row { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; }
+.tt-t { font-weight: 700; }
+.tt-st { font-weight: 700; font-size: 12px; white-space: nowrap; padding: 3px 10px; border-radius: 999px; border: 1px solid currentColor; }
+.tt-cap { margin: 6px 0 0; word-break: break-word; white-space: pre-wrap; }
+.tt-m { color: var(--muted); font-size: 13px; margin: 4px 0 0; }
+.tt-err { color: #ff6b81; font-size: 13px; margin: 6px 0 0; word-break: break-word; }
+.tt-btns { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.tt-btns form { display: inline; }
+.tt button, .tt .tt-btn { font: inherit; font-weight: 700; min-height: 42px; padding: 0 16px; border-radius: 10px; cursor: pointer; border: 1px solid var(--line); background: transparent; color: #fff; }
+.tt button:disabled { opacity: .5; cursor: not-allowed; }
+.tt button.s { background: var(--pink); border-color: var(--pink); color: #fff; }
+.tt button.full { width: 100%; }
+.tt button.link { min-height: 0; padding: 0; border: 0; color: var(--muted); font-weight: 600; font-size: 13px; }
+.tt button:focus-visible, .tt .in:focus-visible, .tt a:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+.tt-tabs { position: sticky; bottom: 0; display: flex; border-top: 1px solid var(--line); background: #000; }
+.tt-tabs a { flex: 1; text-align: center; padding: 15px 0; color: var(--muted); text-decoration: none; font-weight: 700; }
+.tt-tabs a.on { color: #fff; box-shadow: inset 0 3px 0 var(--pink); }
+.tt label.l { display: block; font-weight: 600; margin-bottom: 4px; color: #d9dae3; }
+.tt .in { width: 100%; min-height: 44px; border: 1px solid var(--line); border-radius: 10px; background: #0d0e14; padding: 9px 12px; color: #fff; font: inherit; }
+.tt textarea.in { min-height: 110px; resize: vertical; }
+.tt .in::placeholder { color: #666878; }
+.tt-drop { display: block; border: 2px dashed var(--line); border-radius: 14px; padding: 26px 14px; background: #0d0e14; color: #d9dae3; font-weight: 700; text-align: center; cursor: pointer; }
+.tt-drop:hover { border-color: var(--cyan); }
+.tt-drop small { display: block; color: var(--muted); font-weight: 400; margin-top: 4px; }
+.tt-chip { display: flex; gap: 10px; align-items: center; padding: 12px; border-radius: 10px; border: 1px solid var(--line); background: #0d0e14; margin-bottom: 6px; cursor: pointer; }
+.tt-chip input { accent-color: var(--pink); width: 18px; height: 18px; }
+.tt-empty { color: var(--muted); padding: 18px 4px; }
+.tt-thumb { width: 64px; height: 92px; border-radius: 10px; object-fit: cover; background: #0d0e14; flex-shrink: 0; border: 1px solid var(--line); }
+.tt-item { display: flex; gap: 12px; }
+.tt-item .grow { min-width: 0; flex: 1; }
+.tt-phone { position: relative; width: 190px; aspect-ratio: 9 / 16; margin: 0 auto; border-radius: 22px; overflow: hidden; background: #0d0e14; border: 2px solid var(--line); }
+.tt-phone video, .tt-phone img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tt-phone .ph-empty { height: 100%; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 13px; text-align: center; padding: 12px; }
+.tt-phone .ph-cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 28px 10px 10px; background: linear-gradient(transparent, rgba(0,0,0,.85)); font-size: 11px; line-height: 1.35; max-height: 45%; overflow: hidden; word-break: break-word; }
+.tt-phone .ph-cap b { display: block; margin-bottom: 2px; }
+.tt-counter { font-size: 12px; color: var(--muted); }
+.tt-login { justify-content: center; padding: 28px; }
+.tt-banner { background: #2b1a20; border: 1px solid #5a2433; color: #ffb3c0; border-radius: 10px; padding: 10px 12px; font-size: 14px; }
